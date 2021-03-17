@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/profile_nav_graph"
+    app:startDestination="@id/profileFragment">
+
+    <include app:graph="@navigation/comments_nav_graph" />
+
+    <action
+        android:id="@+id/action_global_commentsViewerFragment"
+        app:destination="@id/comments_nav_graph">
+        <argument
+            android:name="shortCode"
+            app:argType="string"
+            app:nullable="false" />
+        <argument
+            android:name="postId"
+            app:argType="string"
+            app:nullable="false" />
+        <argument
+            android:name="postUserId"
+            app:argType="string"
+            app:nullable="false" />
+    </action>
+
+    <include app:graph="@navigation/likes_nav_graph" />
+
+    <action
+        android:id="@+id/action_global_likesViewerFragment"
+        app:destination="@id/likes_nav_graph">
+        <argument
+            android:name="postId"
+            app:argType="string"
+            app:nullable="false" />
+        <argument
+            android:name="isComment"
+            app:argType="boolean"
+            app:nullable="false" />
+    </action>
+
+    <include app:graph="@navigation/hashtag_nav_graph" />
+
+    <action
+        android:id="@+id/action_global_hashTagFragment"
+        app:destination="@id/hashtag_nav_graph">
+        <argument
+            android:name="hashtag"
+            app:argType="string"
+            app:nullable="false" />
+    </action>
+
+    <include app:graph="@navigation/comments_nav_graph" />
+
+    <action
+        android:id="@+id/action_global_profileFragment"
+        app:destination="@id/profile_nav_graph">
+        <argument
+            android:name="username"
+            android:defaultValue=""
+            app:argType="string"
+            app:nullable="false" />
+    </action>
+
+    <include app:graph="@navigation/location_nav_graph" />
+
+    <action
+        android:id="@+id/action_global_locationFragment"
+        app:destination="@id/location_nav_graph">
+        <argument
+            android:name="locationId"
+            app:argType="string"
+            app:nullable="false" />
+    </action>
+
+    <include app:graph="@navigation/notification_viewer_nav_graph" />
+
+    <action
+        android:id="@+id/action_global_notificationsViewerFragment"
+        app:destination="@id/notification_viewer_nav_graph">
+        <argument
+            android:name="type"
+            app:argType="string"
+            app:nullable="false" />
+    </action>
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="awais.instagrabber.fragments.main.ProfileFragment"
+        android:label="@string/profile"
+        tools:layout="@layout/fragment_profile">
+        <argument
+            android:name="username"
+            android:defaultValue=""
+            app:argType="string"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_profileFragment_to_savedViewerFragment"
+            app:destination="@id/savedViewerFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_followViewerFragment"
+            app:destination="@id/followViewerFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_storyViewerFragment"
+            app:destination="@id/storyViewerFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_dMThreadFragment"
+            app:destination="@id/directMessagesThreadFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/savedViewerFragment"
+        android:name="awais.instagrabber.fragments.SavedViewerFragment"
+        android:label="Saved"
+        tools:layout="@layout/fragment_saved">
+        <argument
+            android:name="username"
+            app:argType="string"
+            app:nullable="false" />
+        <argument
+            android:name="profileId"
+            app:argType="string"
+            app:nullable="false" />
+        <argument
+            android:name="type"
+            app:argType="awais.instagrabber.models.enums.PostItemType"
+            app:nullable="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/followViewerFragment"
+        android:name="awais.instagrabber.fragments.FollowViewerFragment"
+        android:label="Followers"
+        tools:layout="@layout/fragment_followers_viewer">
+        <argument
+            android:name="profileId"
+            app:argType="string"
+            app:nullable="false" />
+        <argument
+            android:name="isFollowersList"
+            app:argType="boolean"
+            app:nullable="false" />
+        <argument
+            android:name="username"
+            app:argType="string"
+            app:nullable="false" />
+        <action
+            android:id="@+id/action_followViewerFragment_to_profileFragment"
+            app:destination="@id/profileFragment">
+            <argument
+                android:name="username"
+                android:defaultValue=""
+                app:argType="string"
+                app:nullable="true" />
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/storyViewerFragment"
+        android:name="awais.instagrabber.fragments.StoryViewerFragment"
+        android:label="StoryViewerFragment"
+        tools:layout="@layout/fragment_story_viewer">
+        <argument
+            android:name="feedStoryIndex"
+            app:argType="integer"
+            app:nullable="false" />
+        <argument
+            android:name="highlight"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="isHashtag"
+            app:argType="boolean" />
+        <argument
+            android:name="isLoc"
+            app:argType="boolean" />
+        <argument
+            android:name="profileId"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="username"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="isArchive"
+            app:argType="boolean"
+            app:nullable="false" />
+        <argument
+            android:name="isNotification"
+            app:argType="boolean"
+            app:nullable="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/directMessagesThreadFragment"
+        android:name="awais.instagrabber.fragments.directmessages.DirectMessageThreadFragment"
+        android:label="DirectMessagesThreadFragment"
+        tools:layout="@layout/fragment_direct_messages_thread">
+        <argument
+            android:name="threadId"
+            app:argType="string" />
+        <argument
+            android:name="title"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_dMThreadFragment_to_dMSettingsFragment"
+            app:destination="@id/directMessagesSettingsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/directMessagesSettingsFragment"
+        android:name="awais.instagrabber.fragments.directmessages.DirectMessageSettingsFragment"
+        android:label="DirectMessagesSettingsFragment"
+        tools:layout="@layout/fragment_direct_messages_settings">
+        <argument
+            android:name="threadId"
+            app:argType="string" />
+        <argument
+            android:name="title"
+            app:argType="string" />
+    </fragment>
+</navigation>

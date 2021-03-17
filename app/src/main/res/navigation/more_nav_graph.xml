@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/more_nav_graph"
+    app:startDestination="@id/morePreferencesFragment">
+
+    <include app:graph="@navigation/profile_nav_graph" />
+    <include app:graph="@navigation/hashtag_nav_graph" />
+    <include app:graph="@navigation/location_nav_graph" />
+    <include app:graph="@navigation/comments_nav_graph" />
+    <include app:graph="@navigation/likes_nav_graph" />
+    <include app:graph="@navigation/notification_viewer_nav_graph" />
+    <include app:graph="@navigation/story_list_nav_graph" />
+
+    <action
+        android:id="@+id/action_global_profileFragment"
+        app:destination="@id/profile_nav_graph">
+        <argument
+            android:name="username"
+            app:argType="string"
+            app:nullable="true" />
+    </action>
+
+    <action
+        android:id="@+id/action_global_hashTagFragment"
+        app:destination="@id/hashtag_nav_graph">
+        <argument
+            android:name="hashtag"
+            app:argType="string"
+            app:nullable="false" />
+    </action>
+
+    <action
+        android:id="@+id/action_global_locationFragment"
+        app:destination="@id/location_nav_graph">
+        <argument
+            android:name="locationId"
+            app:argType="string"
+            app:nullable="false" />
+    </action>
+
+    <action
+        android:id="@+id/action_global_storyListViewerFragment"
+        app:destination="@id/story_list_nav_graph">
+        <argument
+            android:name="type"
+            app:argType="string"
+            app:nullable="false" />
+    </action>
+
+    <action
+        android:id="@+id/action_global_notificationsViewerFragment"
+        app:destination="@id/notification_viewer_nav_graph">
+        <argument
+            android:name="type"
+            app:argType="string"
+            app:nullable="false" />
+    </action>
+
+    <fragment
+        android:id="@+id/morePreferencesFragment"
+        android:name="awais.instagrabber.fragments.settings.MorePreferencesFragment"
+        android:label="@string/more">
+        <action
+            android:id="@+id/action_morePreferencesFragment_to_settingsPreferencesFragment"
+            app:destination="@id/settingsPreferencesFragment" />
+        <action
+            android:id="@+id/action_morePreferencesFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment" />
+        <action
+            android:id="@+id/action_morePreferencesFragment_to_favoritesFragment"
+            app:destination="@id/favoritesFragment" />
+        <action
+            android:id="@+id/action_morePreferencesFragment_to_backupPreferencesFragment"
+            app:destination="@id/backupPreferencesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsPreferencesFragment"
+        android:name="awais.instagrabber.fragments.settings.SettingsPreferencesFragment"
+        android:label="@string/action_settings">
+        <action
+            android:id="@+id/action_settingsPreferencesFragment_to_themePreferencesFragment"
+            app:destination="@id/themePreferencesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="awais.instagrabber.fragments.settings.AboutFragment"
+        android:label="@string/action_about" />
+    <fragment
+        android:id="@+id/themePreferencesFragment"
+        android:name="awais.instagrabber.fragments.settings.ThemePreferencesFragment"
+        android:label="@string/theme_settings" />
+    <fragment
+        android:id="@+id/favoritesFragment"
+        android:name="awais.instagrabber.fragments.FavoritesFragment"
+        android:label="@string/title_favorites" />
+    <fragment
+        android:id="@+id/backupPreferencesFragment"
+        android:name="awais.instagrabber.fragments.settings.BackupPreferencesFragment"
+        android:label="@string/backup_and_restore" />
+</navigation>

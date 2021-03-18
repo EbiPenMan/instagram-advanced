@@ -16,7 +16,12 @@
         android:requestLegacyExternalStorage="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.Light.White"
+        android:networkSecurityConfig="@xml/network_security_config"
         tools:ignore="UnusedAttribute">
+        <meta-data
+            android:name="com.google.android.actions"
+            android:resource="@xml/network_security_config" />
+
         <activity
             android:name=".activities.MainActivity"
             android:launchMode="singleTop"
@@ -30,8 +35,8 @@
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
-                <!--<action android:name="android.intent.action.SEARCH" />-->
-                <!--<action android:name="android.intent.action.WEB_SEARCH" />-->
+                <!-- <action android:name="android.intent.action.SEARCH" /> -->
+                <!-- <action android:name="android.intent.action.WEB_SEARCH" /> -->
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
@@ -132,4 +137,5 @@
             android:name=".services.DeleteImageIntentService"
             android:exported="false" />
     </application>
+
 </manifest>

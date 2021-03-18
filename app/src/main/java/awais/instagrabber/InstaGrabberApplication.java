@@ -17,6 +17,7 @@ import awais.instagrabber.utils.LocaleUtils;
 import awais.instagrabber.utils.SettingsHelper;
 import awaisomereport.CrashReporter;
 import awaisomereport.LogCollector;
+import ir.tapsell.plus.TapsellPlus;
 
 import static awais.instagrabber.utils.CookieUtils.NET_COOKIE_MANAGER;
 import static awais.instagrabber.utils.Utils.clipboardManager;
@@ -32,6 +33,9 @@ public final class InstaGrabberApplication extends Application {
         super.onCreate();
         // final Set<RequestListener> requestListeners = new HashSet<>();
         // requestListeners.add(new RequestLoggingListener());
+
+        TapsellPlus.initialize(this, BuildConfig.TAPSELL_KEY);
+
         final ImagePipelineConfig imagePipelineConfig = ImagePipelineConfig
                 .newBuilder(this)
                 // .setMainDiskCacheConfig(diskCacheConfig)

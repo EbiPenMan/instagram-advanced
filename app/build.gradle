@@ -23,6 +23,13 @@ android {
                 arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
             }
         }
+
+        buildConfigField "String", "TAPSELL_KEY", "\"alsoatsrtrotpqacegkehkaiieckldhrgsbspqtgqnbrrfccrtbdomgjtahflchkqtqosa\""
+        buildConfigField "String", "TAPSELL_REWARDED_VIDEO", "\"5cfaa802e8d17f0001ffb28e\""
+        buildConfigField "String", "TAPSELL_INTERSTITIAL", "\"5cfaa942e8d17f0001ffb292\""
+        buildConfigField "String", "TAPSELL_NATIVE_BANNER", "\"5cfaa9deaede570001d5553a\""
+        buildConfigField "String", "TAPSELL_STANDARD_BANNER", "\"5cfaaa30e8d17f0001ffb294\""
+
     }
 
     compileOptions {
@@ -103,4 +110,6 @@ dependencies {
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.5'
 
     testImplementation 'org.junit.jupiter:junit-jupiter:5.7.0'
+
+    implementation 'ir.tapsell.plus:tapsell-plus-sdk-android:1.2.3-rc4'
 }
